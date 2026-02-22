@@ -1,7 +1,7 @@
 package com.example.amcart.user.mapper;
 
-import com.example.amcart.user.dto.AddressResponse;
-import com.example.amcart.user.dto.UserResponse;
+import com.example.amcart.responses.AddressResponse;
+import com.example.amcart.responses.UserResponse;
 import com.example.amcart.user.entity.Address;
 import com.example.amcart.user.entity.Role;
 import com.example.amcart.user.entity.User;

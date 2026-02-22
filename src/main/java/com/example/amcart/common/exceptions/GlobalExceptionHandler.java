@@ -1,6 +1,6 @@
 package com.example.amcart.common.exceptions;
 
-import com.example.amcart.user.dto.ErrorResponse;
+import com.example.amcart.responses.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

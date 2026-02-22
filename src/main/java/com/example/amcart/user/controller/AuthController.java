@@ -2,6 +2,7 @@ package com.example.amcart.user.controller;
 
 import com.example.amcart.user.dto.LoginRequest;
 import com.example.amcart.user.service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +19,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request){
-         authService.login(request);
+    public ResponseEntity<String> login(@RequestBody LoginRequest request, HttpServletRequest httpServletRequest){
+         authService.login(request,httpServletRequest);
          return ResponseEntity.ok("Login successful");
     }
 }

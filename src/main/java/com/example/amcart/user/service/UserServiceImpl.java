@@ -3,8 +3,9 @@ package com.example.amcart.user.service;
 
 import com.example.amcart.common.exceptions.EmailAlreadyExistsException;
 import com.example.amcart.common.exceptions.PhoneNumberAlreadyUsed;
+import com.example.amcart.common.exceptions.ResourceNotFoundException;
 import com.example.amcart.user.dto.RegisterRequest;
-import com.example.amcart.user.dto.UserResponse;
+import com.example.amcart.responses.UserResponse;
 import com.example.amcart.user.entity.Address;
 import com.example.amcart.user.entity.Role;
 import com.example.amcart.user.entity.User;
@@ -13,6 +14,7 @@ import com.example.amcart.user.repository.RoleRepository;
 import com.example.amcart.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -75,5 +77,17 @@ public class UserServiceImpl implements UserService{
         User savedUser = userRepository.save(user);
         // return as response after mapping
        return userMapper.toUserResponse(savedUser);
+    }
+
+    @Override
+    public UserResponse getCurrentUser() {
+        String email= SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
+        User user = userRepository.findByEmail(email).
+                orElseThrow(()-> new ResourceNotFoundException("can't access others data"));
+        return userMapper.toUserResponse(user);
     }
 }
