@@ -1,4 +1,4 @@
-package com.example.amcart.user.dto;
+package com.example.amcart.responses;
 
 import lombok.Builder;
 import lombok.Getter;
